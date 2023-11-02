@@ -20,10 +20,10 @@ OPTIONS:<br>
 ## Output
 For the input file, this program will generate the corresponding output file (OutputLength) with DNA senquences given length in FASTQ format:<br>
 Each piece is represented by four lines:<br>
-	* The first line: contains the word **@READ_** followed by the piece index<br>
- 	* The second line: contains L characters in the {A,C,G,T} alphabet = DNA sequence of the piece<br>
-  	* The third line: contains the word **+READ_** followed by the pice index<br>
-   	* The fourth line: contains L characters representing the quality scores of the piece - each score is represented as an ASCII character in the range 33-96, by adding 33 to the final score
+	&ensp* The first line: contains the word **@READ_** followed by the piece index<br>
+ 	&ensp* The second line: contains L characters in the {A,C,G,T} alphabet = DNA sequence of the piece<br>
+  	&ensp* The third line: contains the word **+READ_** followed by the pice index<br>
+   	&ensp* The fourth line: contains L characters representing the quality scores of the piece - each score is represented as an ASCII character in the range 33-96, by adding 33 to the final score
 
 
 
