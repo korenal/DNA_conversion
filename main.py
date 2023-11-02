@@ -19,6 +19,7 @@ def check_input_file(path_to_input: str) -> str:
         with open(path_to_input, mode="rb") as input_file:
             data = input_file.read()
             md5_hash = hashlib.md5(data).hexdigest()
+            input_file.close()
             return md5_hash
     except FileNotFoundError:
         print(f"The file {path_to_input} does not exist.")
@@ -81,14 +82,14 @@ def get_fastq_format(sequence: str, quality_scores: str) -> str:
 
 
 # Loading and checking the input parameters
-path_to_input_file = sys.argv[0]
+path_to_input_file = sys.argv[1]
 md5_hash = check_input_file(path_to_input_file)
-length = check_length_value(sys.argv[1])
+length = check_length_value(sys.argv[2])
 num = 1
 output_file = open("Output" + str(length), "w")
 
 # Going through the file
-input_file = open("C:\\Users\\lucie\\OneDrive\\Plocha\\input", mode="rb")
+input_file = open(path_to_input_file, mode="rb")
 sequence_length = input_file.read(length)
 while sequence_length:
     data_array = [f"{n:08b}" for n in sequence_length]
