@@ -1,4 +1,4 @@
-"""This is program for  DNA sequence conversion. It accepts at the entrance the binary input file which contains \
+"""This is program for  DNA sequence conversion. It accepts as an input the binary input file which contains \
 multiple consecutive entries which are DNA molecules. The program prints on standard output the contents of the input \
 file in FASTQ format."""
 import hashlib
@@ -6,128 +6,99 @@ import sys
 from string import Template
 
 
-def check_input_file(path_to_input: str) -> bool:
+def check_input_file(path_to_input: str) -> str:
     """Checks if the input file is in the binary format.
 
     Args:
+        path_to_input (str): Path to the input file.
 
     Returns:
-
+        str: MD5 hash value of binary file.
     """
     try:
         with open(path_to_input, mode="rb") as input_file:
             data = input_file.read()
             md5_hash = hashlib.md5(data).hexdigest()
-            print(md5_hash)
+            return md5_hash
     except FileNotFoundError:
         print(f"The file {path_to_input} does not exist.")
 
 
-def get_sequence(data_array: list) -> list:
-    """Gets the sequence of nucleotides.
+def check_length_value(length_arg: str) -> int:
+    """Checks if the input value for length is bigger than zero.
 
-    :return:
+    Args:
+        length_arg (str): Length value from argument parameters.
+
+    Returns:
+        int: Checked length value.
     """
-    res_sequence = []
-    for element in data_array:
-        match element[:2]:
-            case "00":
-                res_sequence.append("A")
-            case "01":
-                res_sequence.append("C")
-            case "10":
-                res_sequence.append("G")
-            case "11":
-                res_sequence.append("T")
-            case _:
-                print("Wrong input - it should be '00', '01', '10' or '11'.")
-        # ele = element[:2]
-        # if ele == "00":
-        # res_sequence.append("A")
-        # f ele == "01":
-        # res_sequence.append("C")
-        # elif ele == "10":
-        # res_sequence.append("G")
-        # else:
-        # res_sequence.append("T")
-    return res_sequence
-
-    # print(element[:2])
+    try:
+        length = int(length_arg)
+        if length > 0:
+            return length
+    except ValueError:
+        print("Length value should be bigger than 0.")
 
 
-def get_quality_score(data_array: list) -> list:
+def get_nucleotide(bits: str) -> str:
+    """Gets the nucleotide from the 2 bits from input.
+
+    Args:
+        bits (str): The first 2 bits of the one record.
+
+    Returns:
+          str: Right nucleotide.
     """
+    match bits:
+        case "00":
+            return "A"
+        case "01":
+            return "C"
+        case "10":
+            return "G"
+        case "11":
+            return "T"
+        case _:
+            print("Wrong input - it should be '00', '01', '10' or '11'.")
 
-    :param data_array:
-    :return:
+
+def get_fastq_format(sequence: str, quality_scores: str) -> str:
+    """Writes the DNA sequence of length L in FASTQ format output.
+
+    Args:
+        sequence (str): Sequence DNA of length L.
+        quality_scores (str): Quality scores every nucleotide of the sequence DNA.
+
+    Returns:
+        str: FASTQ format of the DNA sequence (four lines).
     """
-    quality_scores = []
-    for element in data_array:
-        # print(data_array)
-        # helper = str('b\"' + element[-6:] + '\"')
-        # new_array = [x[-6:] for x in data_array]
-        quality_scores.append(chr(int(element[-6:], 2) + 33))
-        # binary_string = "010010"
-        # print(int(binary_string,2)+33)
-        # print(chr(int(binary_string,2)+33))
-        # print(binary_to_string(data_array))
-        # print(binascii.b2a_uu(bin(element[-6:])))
-        # print(helper)
-    return quality_scores
+    first_line = '@READ_' + str(num)
+    third_line = '+READ_' + str(num)
+    fastq_template = Template(f'$first_line\n$sequence\n$third_line\n$quality_scores')
+    return (fastq_template.substitute(first_line=first_line, sequence=sequence, third_line=third_line,
+                                      quality_scores=quality_scores))
 
 
-def binary_to_string(bits):
-    # print(bits)
-    return ''.join([chr(int(i, 2)) for i in bits])
-
-
-def get_fastq_format(sequence, quality):
-    identifier = '@READ_' + str(num)
-    plus_sign = '+READ_' + str(num)
-    seq = ''.join(sequence)
-    jedna = ''.join(quality)
-
-    fastq_template = Template(f'$identifier\n$seq\n$plus_sign\n$jedna')
-    print(fastq_template.substitute(identifier=identifier, seq=seq, plus_sign=plus_sign, jedna=jedna))
-
-
-# Loading and checking the input file
-
-# input_file = open("C:\\Users\\lucie\\OneDrive\\Plocha\\input", mode="rb")
-
-# path_to_input_file = "C:\\Users\\lucie\\OneDrive\\Plocha\\input"
+# Loading and checking the input parameters
 path_to_input_file = sys.argv[0]
-check_input_file(path_to_input_file)
-
-# data = input_file.read()
-# md5_hash = hashlib.md5(data).hexdigest()
-# print(md5_hash)
-
-
-# Reading the input file
-# print([f"{n:08b}" for n in data])
-
-# parameter
-length = 7
+md5_hash = check_input_file(path_to_input_file)
+length = check_length_value(sys.argv[1])
 num = 1
+output_file = open("Output" + str(length), "w")
 
-# going throw
+# Going through the file
 input_file = open("C:\\Users\\lucie\\OneDrive\\Plocha\\input", mode="rb")
-data_length = input_file.read(length)
-while data_length:
-    data_array = [f"{n:08b}" for n in data_length]
-    # print(type(data_array[0]))
-
-    # TODO: funkce na encoding pismene
-    result_seq = get_sequence(data_array)
-    # print(result_seq)
-
-    # TODO: funkce na encoding
-    res_quality = get_quality_score(data_array)
-    # print(res_quality)
-
-    # TODO: Template for FASTQ file
-    get_fastq_format(result_seq, res_quality)
+sequence_length = input_file.read(length)
+while sequence_length:
+    data_array = [f"{n:08b}" for n in sequence_length]
+    sequence = ""
+    quality_scores = ""
+    for element in data_array:
+        sequence += get_nucleotide(element[:2])
+        quality_scores += chr(int(element[-6:], 2) + 33)
+    output_file.write(get_fastq_format(sequence, quality_scores))
+    output_file.write("\n")
     num += 1
-
-    data_length = input_file.read(length)
+    sequence_length = input_file.read(length)
+output_file.close()
