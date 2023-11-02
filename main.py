@@ -76,7 +76,7 @@ def get_fastq_format(sequence: str, quality_scores: str) -> str:
     """
     first_line = '@READ_' + str(num)
     third_line = '+READ_' + str(num)
-    fastq_template = Template(f'$first_line\n$sequence\n$third_line\n$quality_scores')
+    fastq_template = Template(f'$first_line\n$sequence\n$third_line\n$quality_scores\n')
     return (fastq_template.substitute(first_line=first_line, sequence=sequence, third_line=third_line,
                                       quality_scores=quality_scores))
 
@@ -99,7 +99,6 @@ while sequence_length:
         sequence += get_nucleotide(element[:2])
         quality_scores += chr(int(element[-6:], 2) + 33)
     output_file.write(get_fastq_format(sequence, quality_scores))
-    output_file.write("\n")
     num += 1
     sequence_length = input_file.read(length)
 output_file.close()
