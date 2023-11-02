@@ -19,7 +19,7 @@ OPTIONS:
 
 ## Output
 For the input file, this program will generate the corresponding output file (OutputLength) with DNA senquences given length in FASTQ format: /n
-Each piece is represented by four lines: \n
+Each piece is represented by four lines:<br>
 	*The first line: contains the word **@READ_** followed by the piece index /n
  	*The second line: contains L characters in the {A,C,G,T} alphabet = DNA sequence of the piece \n
   	*The third line: contains the word **+READ_** followed by the pice index \n
