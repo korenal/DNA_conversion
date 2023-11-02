@@ -18,11 +18,11 @@ OPTIONS:
   `C:\Users\lucie\AppData\Local\Programs\Python\Python310\python.exe C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py C:\\Users\\lucie\\OneDrive\\Plocha\\input 7`
 
 ## Output
-For the input file, this program will generate the corresponding output file (OutputLength) with DNA senquences given length in FASTQ format:
-Each piece is represented by four lines:
-	* The first line: contains the word **@READ_** followed by the piece index
- 	* The second line: contains L characters in the {A,C,G,T} alphabet = DNA sequence of the piece
-  	* the third line: contains the word **+READ_** followed by the pice index
+For the input file, this program will generate the corresponding output file (OutputLength) with DNA senquences given length in FASTQ format: \n
+Each piece is represented by four lines: \n
+	* The first line: contains the word **@READ_** followed by the piece index \n
+ 	* The second line: contains L characters in the {A,C,G,T} alphabet = DNA sequence of the piece \n
+  	* the third line: contains the word **+READ_** followed by the pice index \n
    	* the fourth line: contains L characters representing the quality scores of the piece - each score is represented as an ASCII character in the range 33-96, by adding 33 to the final score
 
 
