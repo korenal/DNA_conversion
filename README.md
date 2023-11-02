@@ -8,7 +8,7 @@ Clone the GitHub repo, e.g. `git clone https://github.com/korenal/DNA_conversion
 At least Python 3.10
 
 ## Usage
-`Usage: python main.py [OPTIONS]
+`Usage: python main.py [OPTIONS] /n
 OPTIONS:
 	Required
 	path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"
