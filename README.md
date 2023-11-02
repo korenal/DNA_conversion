@@ -11,13 +11,16 @@ At least Python 3.10
 `Usage: python main.py [OPTIONS]
 OPTIONS:
 	Required
-	path_to_input_file: is should look something like this:C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py
-	-1 seq_files_left: comma separated files for the first mate in the paried-end data sets
-	-2 seq_files_right: comma separated files for the second mate in the paired-end data sets
-	-i seq_files_interleaved: comma sperated files for interleaved paired-end data sets
+	path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"
+ 	length_of_the_sequence: Length of the final DNA sequences - number bigger than 0
 
-for example: 
-  `C:\Users\lucie\AppData\Local\Programs\Python\Python310\python.exe C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py 80`
+## Example input: 
+  `C:\Users\lucie\AppData\Local\Programs\Python\Python310\python.exe C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py C:\\Users\\lucie\\OneDrive\\Plocha\\input 7`
+
+## Output
+For the input file, this program will generate the corresponding output file (OutputLength) with DNA senquences given length in FASTQ format:
+Each piece is represented by four lines:
+	* The first line: contains word **@READ_** followed by the piece 
 
 
 
