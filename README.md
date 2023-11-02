@@ -8,10 +8,10 @@ Clone the GitHub repo, e.g. `git clone https://github.com/korenal/DNA_conversion
 At least Python 3.10
 
 ## Usage
-`Usage: python main.py [OPTIONS]\
-OPTIONS:
-	Required
-	path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"
+`Usage: python main.py [OPTIONS]<br>
+OPTIONS:<br>
+	Required<br>
+	path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"<br>
  	length_of_the_sequence: Length of the final DNA sequences - number bigger than 0 `
 
 ## Example input: 
