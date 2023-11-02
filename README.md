@@ -12,7 +12,7 @@ At least Python 3.10
 OPTIONS:
 	Required
 	path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"
- 	length_of_the_sequence: Length of the final DNA sequences - number bigger than 0
+ 	length_of_the_sequence: Length of the final DNA sequences - number bigger than 0 `
 
 ## Example input: 
   `C:\Users\lucie\AppData\Local\Programs\Python\Python310\python.exe C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py C:\\Users\\lucie\\OneDrive\\Plocha\\input 7`
