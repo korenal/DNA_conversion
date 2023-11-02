@@ -8,11 +8,11 @@ Clone the GitHub repo, e.g. `git clone https://github.com/korenal/DNA_conversion
 At least Python 3.10
 
 ## Usage
-`Usage: python main.py [OPTIONS]<br>
+Usage: python main.py [OPTIONS]<br>
 OPTIONS:<br>
 	&ensp; &ensp; Required<br>
 	&ensp; &ensp; path_to_input_file: is should look something like this: "C:\\Users\\lucie\\OneDrive\\Plocha\\input"<br>
- 	&ensp; &ensp; length_of_the_sequence: Length of the final DNA sequences - number bigger than 0`
+ 	&ensp; &ensp; length_of_the_sequence: Length of the final DNA sequences - number bigger than 0
 
 ## Example input: 
   `C:\Users\lucie\AppData\Local\Programs\Python\Python310\python.exe C:\Users\lucie\PycharmProjects\DNA_sequence_conversion\main.py C:\\Users\\lucie\\OneDrive\\Plocha\\input 7`
